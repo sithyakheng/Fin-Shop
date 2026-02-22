@@ -45,6 +45,8 @@ model User {
   orders        Order[]        @relation("buyerOrders")
   sales         Order[]        @relation("sellerSales")
   interactions  Interaction[]
+  reviews       Review[]
+  wishlists     Wishlist[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
@@ -65,6 +67,7 @@ model Product {
   interactions Interaction[]
   reviews      Review[]
   wishlistedBy Wishlist[]
+  orders       Order[]
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
 }
