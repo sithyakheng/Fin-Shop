@@ -1,12 +1,12 @@
-import NextAuth, { NextAuthConfig } from 'next-auth'
-import Credentials from 'next-auth/providers/credentials'
+import type { NextAuthOptions } from 'next-auth'
+import CredentialsProvider from 'next-auth/providers/credentials'
 import { prisma } from './prisma'
 import { compare } from 'bcrypt'
 
-export const authConfig: NextAuthConfig = {
+export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
   providers: [
-    Credentials({
+    CredentialsProvider({
       name: 'Credentials',
       credentials: {
         email: { label: 'Email', type: 'email' },
@@ -18,20 +18,20 @@ export const authConfig: NextAuthConfig = {
         if (!user) return null
         const ok = await compare(credentials.password, user.passwordHash)
         if (!ok) return null
-        return { id: user.id, email: user.email, name: user.name, role: user.role }
+        return { id: user.id, email: user.email, name: user.name || undefined, role: user.role as any }
       },
     }),
   ],
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = (user as any).role
+        ;(token as any).role = (user as any).role
       }
       return token
     },
     async session({ session, token }) {
       if (token?.sub) (session as any).user.id = token.sub
-      if (token?.role) (session as any).user.role = token.role
+      if ((token as any)?.role) (session as any).user.role = (token as any).role
       return session
     },
   },
@@ -39,5 +39,3 @@ export const authConfig: NextAuthConfig = {
     signIn: '/auth/login',
   },
 }
-
-export const { handlers, auth, signIn, signOut } = NextAuth(authConfig)

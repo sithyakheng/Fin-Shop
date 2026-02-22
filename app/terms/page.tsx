@@ -1,4 +1,4 @@
-import { useT } from '../../components/i18n/dictionary'
+import { useT } from '../../components/i18n/LanguageContext'
 
 export default function TermsPage() {
   const t = useT()

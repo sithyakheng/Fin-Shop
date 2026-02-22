@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getDictionary, useT } from '../components/i18n/dictionary'
+import { useT } from '../components/i18n/LanguageContext'
 
 export default function HomePage() {
   const t = useT()
