@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       buyerId,
       sellerId,
       priceUsd,
-      commission: commissionUsd ?? (Number(priceUsd) * 0.1).toFixed ? (Number(priceUsd) * 0.1) : 0.1
+      commission: commissionUsd ?? (Number(priceUsd) * 0.1).toFixed(2) ? (Number(priceUsd) * 0.1) : 0.1
     }
   })
   return NextResponse.json(order)
@@ -37,4 +37,3 @@ export async function PATCH(req: Request) {
   })
   return NextResponse.json(order)
 }
-
