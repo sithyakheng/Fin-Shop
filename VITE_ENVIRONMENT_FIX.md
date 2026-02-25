@@ -32,7 +32,7 @@ VITE_SUPABASE_ANON_KEY=""
 
 ### 2. Supabase Client Files
 
-**`lib/supabase.js` - Updated:**
+**`src/lib/supabase.js` - Updated:**
 ```javascript
 // Before
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
@@ -43,7 +43,7 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 ```
 
-**`lib/supabase.ts` - Updated:**
+**`src/lib/supabase.ts` - Updated:**
 ```typescript
 // Before
 const supabaseUrl: string = process.env.NEXT_PUBLIC_SUPABASE_URL!

@@ -13,7 +13,7 @@
 - `.env.example`: Replaced Cloudinary vars with Supabase vars
 
 ✅ **New Files Created**
-- `lib/supabase.js`: Supabase client and upload helper functions
+- `src/lib/supabase.js`: Supabase client and upload helper functions
 - `app/api/upload/route.ts`: API endpoint for image uploads
 - `SUPABASE_SETUP.md`: Detailed setup instructions
 - `README.md`: Updated project documentation

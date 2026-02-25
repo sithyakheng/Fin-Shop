@@ -17,8 +17,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 **Solution**: Reverted to `process.env` for Next.js compatibility
 
 **Files Updated:**
-- `lib/supabase.ts` - TypeScript version
-- `lib/supabase.js` - JavaScript version
+- `src/lib/supabase.ts` - TypeScript version
+- `src/lib/supabase.js` - JavaScript version
 
 Both now correctly use:
 ```javascript

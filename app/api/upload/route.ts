@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { uploadImage } from '@/lib/supabase'
+import { uploadImage } from '@/src/lib/supabase'
 
 export async function POST(req: NextRequest) {
   try {
