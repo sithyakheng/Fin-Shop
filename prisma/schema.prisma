@@ -61,6 +61,12 @@ model Product {
   stock        Int            @default(0)
   qrImageUrl   String?
   featured     Boolean        @default(false)
+  // Contact links for this product
+  facebook     String?
+  telegram     String?
+  instagram    String?
+  tiktok       String?
+  whatsapp     String?
   seller       User           @relation(fields: [sellerId], references: [id])
   sellerId     String
   images       ProductImage[]

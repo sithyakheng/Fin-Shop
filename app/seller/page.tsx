@@ -10,7 +10,8 @@ export default function SellerDashboard() {
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">Seller Dashboard</h1>
       <div className="flex gap-3">
-        <Link href="/seller/products/new" className="btn btn-primary">New Product</Link>
+        <Link href="/seller/add-product" className="btn btn-primary">Add Product</Link>
+        <Link href="/seller/products" className="btn btn-secondary">My Products</Link>
         <Link href="/products" className="btn btn-ghost">View Storefront</Link>
       </div>
       <section>

@@ -27,10 +27,27 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   const body = await req.json()
-  const { title, description, priceUsd, priceKhr, category, stock, qrImageUrl, images, sellerId } = body
+  const { 
+    title, 
+    description, 
+    priceUsd, 
+    priceKhr, 
+    category, 
+    stock, 
+    qrImageUrl, 
+    images, 
+    sellerId,
+    facebook,
+    telegram,
+    instagram,
+    tiktok,
+    whatsapp
+  } = body
+  
   if (!title || !description || !priceUsd || !sellerId) {
-    return NextResponse.json({ error: 'Missing fields' }, { status: 400 })
+    return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
   }
+  
   const product = await prisma.product.create({
     data: {
       title,
@@ -41,8 +58,24 @@ export async function POST(req: Request) {
       stock: stock ?? 0,
       qrImageUrl,
       sellerId,
+      facebook: facebook || undefined,
+      telegram: telegram || undefined,
+      instagram: instagram || undefined,
+      tiktok: tiktok || undefined,
+      whatsapp: whatsapp || undefined,
       images: images?.length ? { createMany: { data: images.map((url: string) => ({ url })) } } : undefined
+    },
+    include: {
+      images: true,
+      seller: {
+        select: {
+          id: true,
+          name: true,
+          email: true
+        }
+      }
     }
   })
+  
   return NextResponse.json(product)
 }

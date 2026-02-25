@@ -23,10 +23,11 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
   const images = data.images || []
 
   const contactLinks = [
-    { label: 'Telegram', url: seller.telegram },
-    { label: 'Facebook', url: seller.facebook },
-    { label: 'Instagram', url: seller.instagram },
-    { label: 'WhatsApp', url: seller.whatsapp },
+    { label: 'Telegram', url: data.telegram || seller.telegram },
+    { label: 'Facebook', url: data.facebook || seller.facebook },
+    { label: 'Instagram', url: data.instagram || seller.instagram },
+    { label: 'TikTok', url: data.tiktok },
+    { label: 'WhatsApp', url: data.whatsapp || seller.whatsapp },
   ].filter(l => !!l.url)
 
   const handleContactClick = (url: string) => {
