@@ -41,8 +41,8 @@ USING (auth.uid()::text = (storage.foldername(name))[1]);
 Add the following to your `.env` file:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### 4. Install Dependencies

@@ -59,8 +59,8 @@ yarn-error.log*
 ### 🚀 Vercel Integration
 
 **Environment Variables in Vercel:**
-- `VITE_SUPABASE_URL=https://okjilclkhdzxecpfjyff.supabase.co`
-- `VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`
+- `VITE_SUPABASE_URL=your_supabase_url`
+- `VITE_SUPABASE_ANON_KEY=your_supabase_anon_key`
 - `DATABASE_URL=postgresql://user:password@localhost:5432/finshop`
 - `NEXTAUTH_SECRET=replace-with-strong-secret`
 - `NEXTAUTH_URL=http://localhost:3000`

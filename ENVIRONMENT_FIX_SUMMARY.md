@@ -8,8 +8,8 @@
 
 **Updated .env file:**
 ```env
-NEXT_PUBLIC_SUPABASE_URL=https://okjilclkhdzxecpfjyff.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ramlsY2xraGR6eGVjcGZqeWZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIwMDk1NjcsImV4cCI6MjA4NzU4NTU2N30.9R_yB6hq0rCCovjM3TUJxpHbjBOrtJBjFSlujeoxL84
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### 2. Supabase Client Configuration

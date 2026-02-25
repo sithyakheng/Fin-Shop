@@ -11,12 +11,12 @@ All environment variables have been successfully updated from Next.js syntax to 
 **`.env` - Updated:**
 ```env
 # Before
-NEXT_PUBLIC_SUPABASE_URL=https://okjilclkhdzxecpfjyff.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 # After  
-VITE_SUPABASE_URL=https://okjilclkhdzxecpfjyff.supabase.co
-VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 **`.env.example` - Updated:**
