@@ -51,6 +51,21 @@ model User {
   updatedAt     DateTime @updatedAt
 }
 
+model Profile {
+  id        String   @id @default(cuid())
+  uuid      String   @unique // This will store the auth.users.id
+  email     String
+  name      String?
+  role      String   @default("buyer")
+  telegram  String?
+  facebook  String?
+  instagram String?
+  whatsapp  String?
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Product {
   id           String         @id @default(cuid())
   title        String
