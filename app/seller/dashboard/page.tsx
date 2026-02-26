@@ -23,13 +23,13 @@ export default function SellerDashboard() {
         return
       }
 
-      const { data: user } = await supabase
-        .from('User')
+      const { data: profile } = await supabase
+        .from('profiles')
         .select('role')
         .eq('id', session.user.id)
         .single()
 
-      if (!user || user.role !== 'SELLER') {
+      if (!profile || profile.role !== 'seller') {
         router.push('/')
         return
       }
@@ -91,7 +91,7 @@ export default function SellerDashboard() {
       <div className="mt-8 rounded-lg border p-6">
         <h2 className="mb-4 text-xl font-semibold">Account Information</h2>
         <p><strong>Email:</strong> {user?.email}</p>
-        <p><strong>Role:</strong> SELLER</p>
+        <p><strong>Role:</strong> seller</p>
       </div>
     </div>
   )

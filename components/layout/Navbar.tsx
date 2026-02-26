@@ -6,16 +6,15 @@ import { dictionaries } from '../i18n/dictionary'
 import React, { useEffect, useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
-
 export function Navbar() {
   const { lang, setLang } = useLanguage()
   const t = dictionaries[lang]
   const [userRole, setUserRole] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -27,13 +26,13 @@ export function Navbar() {
         return
       }
 
-      const { data: user } = await supabase
-        .from('User')
+      const { data: profile } = await supabase
+        .from('profiles')
         .select('role')
         .eq('id', session.user.id)
         .single()
 
-      setUserRole(user?.role || null)
+      setUserRole(profile?.role || null)
       setLoading(false)
     }
 
@@ -55,7 +54,7 @@ export function Navbar() {
           <Link href="/products" className="text-sm text-gray-700 hover:underline">
             {t['nav.products']}
           </Link>
-          {!loading && userRole === 'SELLER' && (
+          {!loading && userRole === 'seller' && (
             <Link href="/seller/dashboard" className="text-sm text-gray-700 hover:underline">
               Seller Dashboard
             </Link>
