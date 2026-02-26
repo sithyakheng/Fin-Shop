@@ -13,10 +13,12 @@
   },
   "dependencies": {
     "@prisma/client": "^5.16.1",
+    "@supabase/auth-helpers-nextjs": "^0.15.0",
     "@supabase/supabase-js": "^2.45.4",
     "autoprefixer": "^10.4.17",
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
+    "dotenv": "^17.3.1",
     "next": "14.2.5",
     "next-auth": "^4.24.5",
     "postcss": "^8.4.33",
@@ -33,7 +35,7 @@
     "@types/react-dom": "18.2.22",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5",
-    "typescript": "5.4.5",
-    "prisma": "^5.16.1"
+    "prisma": "^5.16.1",
+    "typescript": "5.4.5"
   }
 }

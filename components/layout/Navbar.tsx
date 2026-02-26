@@ -1,11 +1,50 @@
+'use client'
+
 import Link from 'next/link'
 import { useLanguage } from '../i18n/LanguageContext'
 import { dictionaries } from '../i18n/dictionary'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
 
 export function Navbar() {
   const { lang, setLang } = useLanguage()
   const t = dictionaries[lang]
+  const [userRole, setUserRole] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      
+      if (!session) {
+        setUserRole(null)
+        setLoading(false)
+        return
+      }
+
+      const { data: user } = await supabase
+        .from('User')
+        .select('role')
+        .eq('id', session.user.id)
+        .single()
+
+      setUserRole(user?.role || null)
+      setLoading(false)
+    }
+
+    fetchUserRole()
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
+      fetchUserRole()
+    })
+
+    return () => subscription.unsubscribe()
+  }, [supabase])
   return (
     <header className="border-b">
       <div className="mx-auto flex max-w-6xl items-center justify-between p-4">
@@ -16,6 +55,11 @@ export function Navbar() {
           <Link href="/products" className="text-sm text-gray-700 hover:underline">
             {t['nav.products']}
           </Link>
+          {!loading && userRole === 'SELLER' && (
+            <Link href="/seller/dashboard" className="text-sm text-gray-700 hover:underline">
+              Seller Dashboard
+            </Link>
+          )}
           <Link href="/seller" className="text-sm text-gray-700 hover:underline">
             {t['nav.seller']}
           </Link>

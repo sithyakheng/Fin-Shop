@@ -36,12 +36,7 @@ export async function POST(req: Request) {
     stock, 
     qrImageUrl, 
     images, 
-    sellerId,
-    facebook,
-    telegram,
-    instagram,
-    tiktok,
-    whatsapp
+    sellerId
   } = body
   
   if (!title || !description || !priceUsd || !sellerId) {
@@ -58,11 +53,6 @@ export async function POST(req: Request) {
       stock: stock ?? 0,
       qrImageUrl,
       sellerId,
-      facebook: facebook || undefined,
-      telegram: telegram || undefined,
-      instagram: instagram || undefined,
-      tiktok: tiktok || undefined,
-      whatsapp: whatsapp || undefined,
       images: images?.length ? { createMany: { data: images.map((url: string) => ({ url })) } } : undefined
     },
     include: {
