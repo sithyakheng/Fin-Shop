@@ -17,12 +17,16 @@ CREATE TABLE IF NOT EXISTS profiles (
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
-  INSERT INTO public.profiles (id, email, name, role)
+  INSERT INTO public.profiles (id, email, name, role, telegram, facebook, instagram, whatsapp)
   VALUES (
     new.id,
     new.email,
     new.raw_user_meta_data->>'name',
-    COALESCE(new.raw_user_meta_data->>'role', 'buyer')
+    COALESCE(new.raw_user_meta_data->>'role', 'buyer'),
+    new.raw_user_meta_data->>'telegram',
+    new.raw_user_meta_data->>'facebook',
+    new.raw_user_meta_data->>'instagram',
+    new.raw_user_meta_data->>'whatsapp'
   );
   RETURN new;
 END;
@@ -39,8 +43,12 @@ RETURNS TRIGGER AS $$
 BEGIN
   UPDATE public.profiles 
   SET 
-    name = new.raw_user_meta_data->>'name',
+    name = COALESCE(new.raw_user_meta_data->>'name', old.raw_user_meta_data->>'name'),
     role = COALESCE(new.raw_user_meta_data->>'role', old.raw_user_meta_data->>'role'),
+    telegram = COALESCE(new.raw_user_meta_data->>'telegram', old.raw_user_meta_data->>'telegram'),
+    facebook = COALESCE(new.raw_user_meta_data->>'facebook', old.raw_user_meta_data->>'facebook'),
+    instagram = COALESCE(new.raw_user_meta_data->>'instagram', old.raw_user_meta_data->>'instagram'),
+    whatsapp = COALESCE(new.raw_user_meta_data->>'whatsapp', old.raw_user_meta_data->>'whatsapp'),
     updated_at = timezone('utc'::text, now())
   WHERE id = new.id;
   RETURN new;
